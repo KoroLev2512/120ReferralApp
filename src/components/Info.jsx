@@ -1,12 +1,14 @@
 import Header from './Header'
 import s from './style.module.scss'
 
-import cub from '../img/cub.svg'
+import infbg from '../img/info_bg.svg'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import ProgressBar from './ProgressBar';
 
-export default  function Welcome () {
+export default  function Info () {
 
-    
+    const [progress, setProgress] = useState(25);
     
     return(
         
@@ -19,30 +21,28 @@ export default  function Welcome () {
                 <div className={s.app__titles}>
                     
                     <p className={s.app__titles__title}>
-                    Hello there!
+                    120Block
                     </p>
 
-                    <p className={s.app__titles__subtitle}>
-                    We’re just about to begin
+                    <p className={s.app__titles__subtitles}>
+                    Is a brand inspired by
+                    street culture and creativity
                     </p>
 
                 </div>
 
-                <img src={cub} alt="cub" className={s.cub} />
+                <img src={infbg} alt="cub" className={s.infbg} />
+
+                <ProgressBar progress={progress} />
 
                 <div className={s.app__footer}>
-                    
-                   <p className={s.app__titles__title}>
-                   We love what you do
-                    </p>
 
                     <p className={s.app__titles__subtitle}>
-                    Among 120Block community the creativity
-                    and self-expression is appreciated
+                    We strive with love to create a bold style that can turn ambition into reality!
                     </p>
 
-                <Link to={'/info'} className={s.app__btn}>
-                Begin
+                <Link to={'/subtitles'} className={s.app__btn}>
+                Next
                 </Link>
 
                 </div>
