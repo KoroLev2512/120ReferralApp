@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: 120 Refferal app
+  version: 1.0.0
+  description: API for managing a ref app database
+paths:
+# ------------------User-------------------------
+
+  /api/user/get/{user_id}: 
+    get:
+      tags:
+        - User
+      description:
+        Get all user data
+      parameters get:
+        invited_users: integer # сколько пользователь пригласил своих друзей
+        referral_link: string # реферальная ссылка https://120block.ru/app/startapp=JdsldsaKD
+        user_lavel: integer # уровень пользователя (это число от 1 до 4, где 1 - это 1 уровень (монетка); 2 - это второй уровень (кубок), 3 - это 3 уровень (пирамидка); 4 - это 4 уровень (куб))
+        balance_block: integer # баланс токенов $block
+        wallet: string | Null # адрес кошелька 
+        mint_donate_nft: boolean # заминчино ли NFT на этот кошелек
+        language: string # язык приложения ru/eng
+
+  /api/user/wallet: # тут нужно поговорить с лешой, так как возможно этот запрос не понадобится 
+  post:
+    tags:
+      - User
+    description: 
+      Connect wallet 
+    parameters post:
+      telegram_id: biginteger
+      wallet: string
+
+  /api/user/add:
+    post:
+      tags:
+        - User
+      description:
+        Add user
+      parameters post:
+        telegram_id: biginteger
+        first_name: string | Null
+        last_name: string | Null
+        username_telegram: string | Null
+        language_code: string | Null
+        profile_photo: string | Null
+        refferal_code: string | Null # здесь нужно передать вот этот параметр startapp=JdsldsaKD
+        time_registration: time
+
+        
+
