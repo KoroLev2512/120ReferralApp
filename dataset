@@ -1,0 +1,93 @@
+# users
+    id=1
+        telegram_id=1
+        referral_link=https://120block.ru/ref/1
+        ref_level=1
+        language=eng
+        time_registration=Tue, 25 Jun 2024 21:20:30 GMT
+    
+    id=2
+        telegram_id=2
+        referral_link=https://120block.ru/ref/2
+        ref_level=1
+        language=ru
+        time_registration=Tue, 23 Jun 2024 21:20:30 GMT
+    
+    id=3
+        telegram_id=3
+        referral_link=https://120block.ru/ref/3
+        ref_level=0
+        language=eng
+        time_registration=Tue, 26 Jun 2024 21:20:30 GMT
+    id=4
+        telegram_id=4
+        referral_link=https://120block.ru/ref/4
+        ref_level=1
+        language=ru
+        time_registration=Tue, 26 Jun 2024 23:20:30 GMT
+
+# wallet
+    id=1
+        user_id=2
+        wallet=UQAj7iNlsYm1GskJZV4iGWdeJKp3COxyG0x4kLB-IKGBmy2w
+        mint_nft=false
+    
+    id=2
+        user_id=2
+        wallet=UQB_t2d1IV6KtLiif9QjGfsdOoR1ZvP1tUpwfhGITVPJK7ZQ
+        mint_nft=True
+    
+    id=3
+        user_id=4
+        wallet=UQA0TKii3qulIQ3X_zb-531DeMUdt88xcBdiY4YzFsSyXpA1
+        mint_nft=false
+
+# ivited_user
+    id=1
+        ivited_user_id=2
+        ivited_by_user_id=1
+    
+    id=2
+        ivited_user_id=3
+        ivited_by_user_id=1
+    
+    id=3
+        ivited_user_id=4
+        ivited_by_user_id=1
+
+# user_telegram_data
+    id=1
+        user_id=1
+        telegram_id=1
+        username=bob23
+        first_name=bob
+        second_name=pepepep
+        photo_url=Null
+        language_code=Null
+    
+    id=2
+        user_id=2
+        telegram_id=2
+        username=Null
+        first_name=Null
+        second_name=Null
+        photo_url=Null
+        language_code=eng
+
+    id=3
+        user_id=3
+        telegram_id=3
+        username=cake
+        first_name=chocolate
+        second_name=milk
+        photo_url=Null
+        language_code=ru
+    
+    id=4
+        user_id=4
+        telegram_id=4
+        username=pupupupupupu
+        first_name=Null
+        second_name=duck
+        photo_url=Null
+        language_code=ru
