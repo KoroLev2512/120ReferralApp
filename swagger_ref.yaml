@@ -6,35 +6,50 @@ info:
 paths:
 # ------------------User-------------------------
 
-  /api/user/get/{user_id}: 
+  /api/user/login/{telegram_id}: 
     get:
-      tags:
-        - User
       description:
         Get all user data
       parameters get:
-        invited_users: integer # сколько пользователь пригласил своих друзей
-        referral_link: string # реферальная ссылка https://120block.ru/app/startapp=JdsldsaKD
-        user_lavel: integer # уровень пользователя (это число от 1 до 4, где 1 - это 1 уровень (монетка); 2 - это второй уровень (кубок), 3 - это 3 уровень (пирамидка); 4 - это 4 уровень (куб))
-        balance_block: integer # баланс токенов $block
-        wallet: string | Null # адрес кошелька 
-        mint_donate_nft: boolean # заминчино ли NFT на этот кошелек
-        language: string # язык приложения ru/eng
+        if user exit:
+          invited_users: integer # сколько пользователь пригласил своих друзей
+          referral_link: string # реферальная ссылка  https://t.me/block_120bot/app?startapp=eyJyZWRpcmVjdCI6Ii9ib29zdC
+          user_level: integer # уровень пользователя (это число от 0 до 4, где 0 - прошел онбординг, но не открыл бронзовую монетку, 1 - это 1 уровень (монетка); 2 - это второй уровень (кубок), 3 - это 3 уровень (пирамидка); 4 - это 4 уровень (куб))
+          unlockable_level: boolean # означает возможность открыть, к примеру пользователь набрал 3 реферала этот флаг меняется на true, как он открыл уровень флаг меняется на false.
+          balance_block: integer # баланс токенов $block
+          wallet: string | Null # адрес кошелька 
+          mint_donate_nft: boolean # заминчино ли NFT на этот кошелек
+          language: string # язык приложения ru/eng
+        else: 
+          []
 
-  /api/user/wallet: # тут нужно поговорить с лешой, так как возможно этот запрос не понадобится 
-  post:
-    tags:
-      - User
-    description: 
-      Connect wallet 
-    parameters post:
-      telegram_id: biginteger
-      wallet: string
+  /api/user/unlock/:
+    post:
+      description:
+        
+      parameters post:
+        telegram_id: integer
+        unlockable_level: boolean
+          
+  /api/user/wallet: 
+    post:
+      description: 
+        Connect wallet 
+      parameters post:
+        telegram_id: biginteger
+        wallet: string
+
+    /api/user/task/{telegram_id}:
+      get:
+        description:
+      parameters get:
+        tasks: {
+          description_task: string
+          completed task: boolean
+          }
 
   /api/user/add:
     post:
-      tags:
-        - User
       description:
         Add user
       parameters post:
