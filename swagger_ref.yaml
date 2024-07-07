@@ -26,7 +26,7 @@ paths:
   /api/user/unlock/:
     post:
       description:
-        
+          A new level is open 
       parameters post:
         telegram_id: integer
         unlockable_level: boolean
@@ -39,9 +39,10 @@ paths:
         telegram_id: biginteger
         wallet: string
 
-    /api/user/task/{telegram_id}:
-      get:
-        description:
+  /api/user/task/{telegram_id}:
+    get:
+      description:
+        Get all task
       parameters get:
         tasks: {
           description_task: string
