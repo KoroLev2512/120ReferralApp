@@ -6,14 +6,22 @@ info:
 paths:
 # ------------------User-------------------------
 
-  /api/user/login/{telegram_id}: 
-    get:
+  /api/user/login: 
+    post:
       description:
-        Get all user data
+        Get all user data or user registration
+      parameters post:
+        telegram_id: biginteger
+        first_name: string | Null
+        last_name: string | Null
+        username_telegram: string | Null
+        language_code: string | Null
+        refferal_code: string | Null # здесь нужно передать вот этот параметр startapp=eyJyZWRpcmVjdCI6Ii9ib29zdC
+        
       parameters get:
         if user exit:
           invited_users: integer # сколько пользователь пригласил своих друзей
-          referral_link: string # реферальная ссылка  https://t.me/block_120bot/app?startapp=eyJyZWRpcmVjdCI6Ii9ib29zdC
+          referral_link: string # реферальная ссылка  https://t.me/block_120bot/app?startapp=eyJyZWRpcmVjdCI6Ii9ib29zdC, но нужно пердовать только сам код "eyJyZWRpcmVjdCI6Ii9ib29zdC"
           user_level: integer # уровень пользователя (это число от 0 до 4, где 0 - прошел онбординг, но не открыл бронзовую монетку, 1 - это 1 уровень (монетка); 2 - это второй уровень (кубок), 3 - это 3 уровень (пирамидка); 4 - это 4 уровень (куб))
           unlockable_level: boolean # означает возможность открыть, к примеру пользователь набрал 3 реферала этот флаг меняется на true, как он открыл уровень флаг меняется на false.
           balance_block: integer # баланс токенов $block
@@ -47,6 +55,7 @@ paths:
         tasks: {
           description_task: string
           completed task: boolean
+          reward_block: integer
           }
 
   /api/user/add:
