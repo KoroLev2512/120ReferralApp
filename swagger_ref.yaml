@@ -58,19 +58,5 @@ paths:
           reward_block: integer
           }
 
-  /api/user/add:
-    post:
-      description:
-        Add user
-      parameters post:
-        telegram_id: biginteger
-        first_name: string | Null
-        last_name: string | Null
-        username_telegram: string | Null
-        language_code: string | Null
-        profile_photo: string | Null
-        refferal_code: string | Null # здесь нужно передать вот этот параметр startapp=JdsldsaKD
-        time_registration: time
-
         
 
