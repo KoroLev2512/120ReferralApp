@@ -1,0 +1,13 @@
+{
+    "name": "120Block Supporter",
+    "image": "https://120block.ru/nft/supporter/icon.png",
+    "buttons": [
+        {
+            "uri": "https://t.me/block_120",
+            "label": "120Block"
+        }
+    ],
+    "attributes": [],
+    "content_url": "https://120block.ru/nft/supporter/avatar.mp4",
+    "description": "You are part of 120 Block"
+}
