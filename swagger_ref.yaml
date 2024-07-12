@@ -46,7 +46,7 @@ paths:
       parameters post:
         telegram_id: biginteger
         wallet: string
-
+# Подробнее расписать что будет делать этот post
   /api/user/wallet/mint:
     post:
       description: 
@@ -54,7 +54,7 @@ paths:
       parameters post:
         telegram_id: biginteger
         wallet: string
-
+# По подробнее описать что это будет делать, что менять и как себя вести
   /api/user/task/{telegram_id}:
     get:
       description:
