@@ -1,30 +1,34 @@
 # users
     id=1
         telegram_id=1
-        referral_link=https://120block.ru/ref/1
-        ref_level=1
+        referral_link=34rNSd9r
+        user_level=1
+        unlockable_level=False
         language=eng
-        time_registration=Tue, 25 Jun 2024 21:20:30 GMT
+        time_registration=1720776501
     
     id=2
         telegram_id=2
-        referral_link=https://120block.ru/ref/2
-        ref_level=1
+        referral_link=jkndjfUE4322
+        user_level=1
+        unlockable_level=True
         language=ru
-        time_registration=Tue, 23 Jun 2024 21:20:30 GMT
+        time_registration=1720776502
     
     id=3
         telegram_id=3
-        referral_link=https://120block.ru/ref/3
-        ref_level=0
+        referral_link=KNDskae32
+        user_level=0
+        unlockable_level=False
         language=eng
-        time_registration=Tue, 26 Jun 2024 21:20:30 GMT
+        time_registration=1720777502
     id=4
         telegram_id=4
-        referral_link=https://120block.ru/ref/4
-        ref_level=1
+        referral_link=kdsan9ew392
+        user_level=1
+        unlockable_level=False
         language=ru
-        time_registration=Tue, 26 Jun 2024 23:20:30 GMT
+        time_registration=1720786502
 
 # wallet
     id=1
@@ -40,7 +44,7 @@
     id=3
         user_id=4
         wallet=UQA0TKii3qulIQ3X_zb-531DeMUdt88xcBdiY4YzFsSyXpA1
-        mint_nft=false
+        mint_nft=True
 
 # ivited_user
     id=1
@@ -54,6 +58,69 @@
     id=3
         ivited_user_id=4
         ivited_by_user_id=1
+
+# balance_sheet
+    id=1
+        user_id=1
+        amount=2
+        transaction_type=task 1
+        time=1720776761
+
+    id=2
+        user_id=2
+        amount=20
+        transaction_type=nft level 1
+        time=1720766761
+
+# tasks
+    id=1
+        desription_task=subscribe to 120 block
+        reward=3
+
+    id=2
+        desription_task=jump 120 times
+        reward=20
+
+# completed_task
+    id=1
+        user_id=1
+        task_id=1
+        completed=True
+    
+    id=2
+        user_id=1
+        task_id=2
+        completed=False
+
+    id=3
+        user_id=2
+        task_id=1
+        completed=False
+
+    id=4
+        user_id=2
+        task_id=2
+        completed=False
+
+    id=5
+        user_id=3
+        task_id=1
+        completed=False
+
+    id=6
+        user_id=3
+        task_id=2
+        completed=False
+
+    id=6
+        user_id=4
+        task_id=1
+        completed=False
+
+    id=7
+        user_id=4
+        task_id=2
+        completed=False
 
 # user_telegram_data
     id=1
