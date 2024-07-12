@@ -47,6 +47,14 @@ paths:
         telegram_id: biginteger
         wallet: string
 
+  /api/user/wallet/mint:
+    post:
+      description: 
+        Mint donate nft 
+      parameters post:
+        telegram_id: biginteger
+        wallet: string
+
   /api/user/task/{telegram_id}:
     get:
       description:
