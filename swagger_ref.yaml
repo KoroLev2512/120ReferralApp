@@ -6,7 +6,7 @@ info:
 paths:
 # ------------------User-------------------------
 
-  /api/user/login: 
+  /api/ref/user/login: 
     post:
       description:
         Get all user data or user registration
@@ -31,7 +31,7 @@ paths:
         else: 
           []
 
-  /api/user/unlock/:
+  /api/ref/user/unlock/:
     post:
       description:
           A new level is open 
@@ -39,7 +39,7 @@ paths:
         telegram_id: integer
         unlockable_level: boolean
           
-  /api/user/wallet: 
+  /api/ref/user/wallet: 
     post:
       description: 
         Connect wallet 
@@ -47,7 +47,7 @@ paths:
         telegram_id: biginteger
         wallet: string
 # Подробнее расписать что будет делать этот post
-  /api/user/wallet/mint:
+  /api/ref/user/wallet/mint:
     post:
       description: 
         Mint donate nft 
@@ -55,7 +55,7 @@ paths:
         telegram_id: biginteger
         wallet: string
 # По подробнее описать что это будет делать, что менять и как себя вести
-  /api/user/task/{telegram_id}:
+  /api/ref/user/task/{telegram_id}:
     get:
       description:
         Get all task
