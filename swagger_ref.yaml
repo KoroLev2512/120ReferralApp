@@ -38,33 +38,38 @@ paths:
       parameters post:
         telegram_id: integer
         unlockable_level: boolean
-          
-  /api/ref/user/wallet: 
-    post:
-      description: 
-        Connect wallet 
-      parameters post:
-        telegram_id: biginteger
-        wallet: string
-# Подробнее расписать что будет делать этот post
+
   /api/ref/user/wallet/mint:
     post:
       description: 
-        Mint donate nft 
+        Mint donate-nft was successful
       parameters post:
         telegram_id: biginteger
         wallet: string
-# По подробнее описать что это будет делать, что менять и как себя вести
+        mint_nft: boolean
+        mint_nft_time: time
+
+  
   /api/ref/user/task/{telegram_id}:
     get:
       description:
         Get all task
       parameters get:
         tasks: {
+          task_id: integer
           description_task: string
-          completed task: boolean
+          completed task: boolean | Null
           reward_block: integer
           }
+
+
+  /api/ref/user/task/{telegram_id}/checking/{task_id}:
+    post:
+      description:
+        Whene the user starts performing the task, frontend sent a request to the backend
+      parameters post:
+        telegram_id: integer
+        task_id: integer
 
         
 
