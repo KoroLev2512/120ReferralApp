@@ -37,7 +37,7 @@ paths:
           A new level is open 
       parameters post:
         telegram_id: integer
-        unlockable_level: boolean
+        unlockable_level: boolean # когда пользователь открыл уровень фронт шлет на бэк, чтобы поменять unlockable_level на false
 
 /api/ref/user/wallet/connect:
     post:
@@ -45,7 +45,7 @@ paths:
         Connect wallet
       parameters post:
         telegram_id: biginteger
-        wallet: string
+        wallet: string # адрес кошелька
 
   /api/ref/user/wallet/mint:
     post:
@@ -54,8 +54,8 @@ paths:
       parameters post:
         telegram_id: biginteger
         wallet: string
-        mint_nft: boolean
-        mint_nft_time: time
+        mint_nft: boolean # если минт nft прошел успешно, то mint_nft=True 
+        mint_nft_time: time # примерное время минта для решения проблем, если у пользователя не произошел минт
 
   
   /api/ref/user/task/{telegram_id}:
@@ -64,10 +64,10 @@ paths:
         Get all task
       parameters get:
         tasks: {
-          task_id: integer
-          description_task: string
-          completed task: boolean | Null
-          reward_block: integer
+          task_id: integer 
+          description_task: string # описание задания 
+          completed_task: boolean # если пользователь выполнил задание completed_task=True, в противном случае False
+          reward_block: integer # сумма вознагрождения в блоках 
           }
 
 
