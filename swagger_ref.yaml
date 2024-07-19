@@ -39,6 +39,14 @@ paths:
         telegram_id: integer
         unlockable_level: boolean
 
+/api/ref/user/wallet/connect:
+    post:
+      description: 
+        Connect wallet
+      parameters post:
+        telegram_id: biginteger
+        wallet: string
+
   /api/ref/user/wallet/mint:
     post:
       description: 
