@@ -1,0 +1,32 @@
+button[data-tc-button="true"] {
+    @apply bg-ton-blue hover:bg-ton-blue-hover font-semibold py-2 px-4 rounded transition-colors flex justify-center;
+    color: white;
+    width: 100%;
+}
+
+button[data-tc-button="true"]:hover {
+    transform: none;
+}
+
+button[data-tc-button="true"] > svg > path {
+    fill: white;
+}
+
+#ton-connect-button {
+    width: 100% !important;
+}
+
+#ton-connect-button > * > * > * {
+    width: 100% !important;
+}
+
+*[data-tc-dropdown-container="true"] {
+    top: auto !important;
+    bottom: 120px !important;
+    left: 48px !important;
+    right: 48px !important;
+}
+
+*[data-tc-dropdown="true"] {
+    width: 100% !important;
+}

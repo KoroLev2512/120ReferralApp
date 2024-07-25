@@ -1,9 +1,13 @@
-import { SDKProvider } from "@tma.js/sdk-react";
+import { type FC } from "react";
+import { SDKProvider } from "@telegram-apps/sdk-react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
-import { type FC, useMemo } from "react";
 
 import { App } from "@/components/app";
 import { ErrorBoundary } from "@/components/error-boundary";
+import { MANIFEST_URL } from "@/lib/const";
+
+const queryClient = new QueryClient();
 
 const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   <div>
@@ -20,22 +24,14 @@ const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   </div>
 );
 
-const Inner: FC = () => {
-  const manifestUrl = useMemo(() => {
-    return new URL("tonconnect-manifest.json", window.location.href).toString();
-  }, []);
-
-  return (
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
-      <SDKProvider acceptCustomStyles>
-        <App />
-      </SDKProvider>
-    </TonConnectUIProvider>
-  );
-};
-
 export const Root: FC = () => (
   <ErrorBoundary fallback={ErrorBoundaryError}>
-    <Inner />
+    <TonConnectUIProvider manifestUrl={MANIFEST_URL} restoreConnection>
+      <SDKProvider acceptCustomStyles>
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
+      </SDKProvider>
+    </TonConnectUIProvider>
   </ErrorBoundary>
 );

@@ -8,34 +8,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        tg: {
-          background: {
-            DEFAULT: "var(--tg-theme-bg-color)",
-            secondary: "var(--tg-theme-secondary-bg-color)",
-            section: "var(--tg-theme-section-bg-color)",
-          },
-          header: {
-            DEFAULT: "var(--tg-theme-header-bg-color)",
-            section: "var(--tg-theme-section-header-text-color)",
-          },
-          text: {
-            DEFAULT: "var(--tg-theme-text-color)",
-            accent: "var(--tg-theme-accent-text-color)",
-          },
-          button: {
-            DEFAULT: "var(--tg-theme-button-color)",
-            tinted:
-              "color-mix(in srgb, var(--tg-theme-link-color) 10%, transparent)",
-            text: "var(--tg-theme-button-text-color)",
-          },
-          hint: "var(--tg-theme-hint-color)",
-          subtitle: "var(--tg-theme-subtitle-text-color)",
-          link: "var(--tg-theme-link-color)",
-          destructive: "var(--tg-theme-destructive-text-color)",
+        "ton-blue": {
+          DEFAULT: "#0098ea",
+          hover: "#2ca0ec",
         },
-      }
+        bg: "#1f1f1f",
+        hint: "#87888c",
+        muted: "#565656",
+        disabled: "#333333",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  plugins: [typography],
+  // eslint-disable-next-line no-undef
+  plugins: [typography, require("tailwindcss-animate")],
 }
 

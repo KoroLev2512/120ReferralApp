@@ -4,9 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>120Block Ref App</title>
+    <link rel="stylesheet" href="/src/styles/splash.css">
+    <script>
+      (function (window) {
+        window.hideLoader = function hideLoader() {
+            if (document.readyState === "loading") {
+                window.addEventListener("DOMContentLoaded", ejectLoader)
+
+                return;
+            }
+
+            ejectLoader();
+        }
+        let timeoutId = null;
+
+        window.ejectLoader = function () {
+            const splash = document.querySelector('.splash');
+
+            if (splash && !timeoutId) {
+                timeoutId = setTimeout(() => {
+                    splash.classList.add('splash-fading');
+
+                    setTimeout(() => {
+                        splash.classList.add('splash-hidden');
+                        timeoutId = null;
+                    }, 200);
+                }, 300)
+            }
+        }
+
+        window.showLoader = function () {
+          const splash = document.querySelector('.splash');
+          splash.classList.remove('splash-hidden');
+          splash.classList.remove('splash-fading');
+        }
+
+      })(window);
+    </script>
   </head>
-  <body class="h-screen overflow-hidden">
-    <div id="root" class="h-full overflow-y-scroll"></div>
+  <body class="h-screen overflow-hidden bg-bg text-white">
+    <div id="root" class="h-full overflow-y-scroll overflow-x-hidden"></div>
+    <div class="splash">
+      <svg width="88" height="102" viewBox="0 0 88 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M44.0273 0.804932L87.9342 26.0397L44.0273 51.2744L0.120361 26.0397L44.0273 0.804932Z" fill="#BDB8B8"/>
+        <path d="M43.9612 51.2581L87.9357 25.9437L88 76.6839L44.0255 101.998L43.9612 51.2581Z" fill="#878484"/>
+        <path d="M44.0388 51.2598L0.0643253 25.9454L0 76.6856L43.9745 102L44.0388 51.2598Z" fill="#E3DBDB"/>
+      </svg>        
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
