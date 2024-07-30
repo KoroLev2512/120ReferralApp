@@ -1,13 +1,19 @@
-import { type FC } from "react";
-import { SDKProvider } from "@telegram-apps/sdk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SDKProvider } from "@telegram-apps/sdk-react";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import { type FC } from "react";
 
 import { App } from "@/components/app";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { MANIFEST_URL } from "@/lib/const";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   <div>

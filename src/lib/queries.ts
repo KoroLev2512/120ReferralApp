@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { getStore } from "@/store/store";
 import type { Task, User } from "@/types";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { retrieveRefCode, retrieveUserSafely } from "./utils";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "./const";
+import { retrieveRefCode, retrieveUserSafely } from "./utils";
 
 function userAdapter(data: any): User | undefined {
   try {
@@ -16,6 +17,7 @@ function userAdapter(data: any): User | undefined {
       invitations: data.invited_users,
       wallet: hasWallet ? data.wallet : undefined,
       donateMinted: data.mint_donate_nft,
+      referralLink: data.referral_link,
     };
   } catch (e) {
     console.log(e);
@@ -59,7 +61,7 @@ async function login(): Promise<User | undefined> {
       last_name: user.lastName,
       username_telegram: user.username,
       language_code: user.languageCode,
-      referral_code: retrieveRefCode(),
+      referal_code: retrieveRefCode(),
     }),
   });
 
@@ -70,7 +72,6 @@ export const useGetUserQuery = () => {
   return useQuery({
     queryKey: ["login"],
     queryFn: getUser,
-    retry: false,
   });
 };
 
@@ -139,10 +140,24 @@ export const useUnlockMutation = () =>
     },
   });
 
+export const useCheckTaskCompletionMutation = () =>
+  useMutation({
+    mutationFn: async (taskId: string | number) => {
+      const user = retrieveUserSafely();
+
+      await fetch(BASE_URL + `/task/${user.id}/checking/${taskId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+  });
+
 export const useMintNFTMutation = () =>
   useMutation({
     mutationFn: async () => {
-      const user = retrieveUserSafely();
+      const { user } = getStore();
       // TODO: add business logic
       return user;
     },

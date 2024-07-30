@@ -7,6 +7,7 @@ export type User = {
   invitations: number;
   wallet?: string;
   donateMinted?: boolean;
+  referralLink?: string;
 };
 
 export type Task = {

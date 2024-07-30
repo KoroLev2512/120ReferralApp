@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useCheckTaskCompletionMutation, useTasksQuery } from "@/lib/queries";
+import { cn } from "@/lib/utils";
+import { useLocale } from "@/store/use-locale";
+import { Task } from "@/types";
 import { useHapticFeedback, useUtils } from "@telegram-apps/sdk-react";
 import {
   CheckCheck,
@@ -7,13 +10,11 @@ import {
   Frown,
   X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { useLocale } from "@/store/use-locale";
-import { useTasksQuery } from "@/lib/queries";
-import { Task } from "@/types";
 
 type TaskProps = {
+  id: string | number;
   title: string;
   description?: string;
   isCompleted: boolean;
@@ -21,12 +22,14 @@ type TaskProps = {
   reward: number;
 };
 
-const TaskItem = ({ title, reward, isCompleted, link }: TaskProps) => {
+const TaskItem = ({ id, title, reward, isCompleted, link }: TaskProps) => {
   const utils = useUtils();
+  const { mutateAsync: checkTaskCompletion } = useCheckTaskCompletionMutation();
 
   const handleClick = () => {
     if (link) {
       utils.openLink(link);
+      checkTaskCompletion(id);
     }
   };
 
@@ -62,6 +65,7 @@ const TasksList = ({ tasks }: { tasks: Task[] }) => {
       {tasks.map((task) => (
         <TaskItem
           key={task.id}
+          id={task.id}
           title={task.description}
           reward={task.reward}
           isCompleted={task.completed}

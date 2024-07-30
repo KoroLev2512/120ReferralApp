@@ -1,7 +1,7 @@
-import { create } from "zustand";
-
-import type { Locale, User } from "@/types";
 import { retrieveLocale } from "@/lib/utils";
+import type { Locale, User } from "@/types";
+import { useStore as useZustand } from "zustand";
+import { createStore } from "zustand/vanilla";
 
 type State = {
   locale: Locale;
@@ -13,10 +13,20 @@ type Actions = {
   setUser: (user: User) => void;
 };
 
-export const useStore = create<State & Actions>((set) => ({
+type Store = State & Actions;
+
+const store = createStore<Store>((set) => ({
   locale: retrieveLocale(),
   user: undefined,
   wallet: undefined,
   setUser: (user: User) => set({ user }),
   setLocale: (locale: Locale) => set({ locale }),
 }));
+
+export function useStore(): Store;
+export function useStore<T>(selector: (state: Store) => T): T;
+export function useStore<T>(selector?: (state: Store) => T) {
+  return useZustand(store, selector!);
+}
+
+export const getStore = () => store.getState();

@@ -1,4 +1,10 @@
+import CoinCounter from "@/components/coin-counter";
+import CommunityButton from "@/components/community-button";
 import Header from "@/components/header";
+import NFT from "@/components/nft";
+import RefCounter from "@/components/ref-counter";
+import RewardButton from "@/components/reward-button";
+import ShareButton from "@/components/share-button";
 import {
   Carousel,
   CarouselApi,
@@ -6,23 +12,18 @@ import {
   CarouselDots,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
+import { REF_COUNT_BY_NFT_LEVEL } from "@/lib/const";
+import { cn } from "@/lib/utils";
+import { useLocale } from "@/store/use-locale";
+import { useUser } from "@/store/use-user";
 import {
   useBackButton,
   useMainButton,
   useMiniApp,
 } from "@telegram-apps/sdk-react";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import Donate, { DonateContent } from "../components/donate";
-import NFT from "@/components/nft";
-import RefCounter from "@/components/ref-counter";
-import CoinCounter from "@/components/coin-counter";
-import ShareButton from "@/components/share-button";
-import RewardButton from "@/components/reward-button";
-import { cn } from "@/lib/utils";
-import { useUser } from "@/store/use-user";
-import { useLocale } from "@/store/use-locale";
-import CommunityButton from "@/components/community-button";
-import { REF_COUNT_BY_NFT_LEVEL } from "@/lib/const";
 
 export default function GalleryPage() {
   const [api, setApi] = useState<CarouselApi | null>(null);
@@ -63,7 +64,7 @@ export default function GalleryPage() {
   }, [api]);
 
   if (!user) {
-    throw new Error("No user");
+    return <Navigate to="/" />;
   }
 
   return (

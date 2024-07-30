@@ -22,12 +22,11 @@ export default function Login() {
     console.log("Logging in...");
     login()
       .then((fetchedUser) => {
-        // {message: "User added!"}
         console.log("Finished logging in, fetched user:", fetchedUser);
         if (fetchedUser) {
           setUser(fetchedUser);
           if (fetchedUser.level > 0) {
-            console.log("User's level > 0, redirecting to gallery");
+            console.log("User's level > 0, redirecting to gallery...");
             navigate("/gallery");
           } else {
             navigate("/onboarding");

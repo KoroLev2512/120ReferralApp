@@ -1,3 +1,4 @@
+import { getStore } from "@/store/store";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -13,8 +14,8 @@ export function retrieveLocale() {
 }
 
 export function createRefCode() {
-  const user = retrieveUserSafely();
-  return btoa(`${user.id}`);
+  const { user } = getStore();
+  return user?.referralLink;
 }
 
 export function createRefLink() {
@@ -27,21 +28,15 @@ export function retrieveRefCode() {
     return null;
   }
 
-  return atob(startParam);
+  // return atob(startParam);
+  return startParam;
 }
-
-// export function parseRefLink() {
-//   const { startParam } = retrieveLaunchParams();
-//   if (!startParam) {
-//     return null;
-//   }
-
-//   return +atob(startParam);
-// }
 
 export function getBottomPadding() {
   const lp = retrieveLaunchParams();
-  return ["ios", "android"].includes(lp.platform) ? "pb-8" : "pb-4";
+  return ["ios", "android", "android_x"].includes(lp.platform)
+    ? "pb-8"
+    : "pb-4";
 }
 
 export function retrieveUserSafely() {
