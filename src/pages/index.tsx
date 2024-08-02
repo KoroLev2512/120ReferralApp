@@ -10,7 +10,7 @@ const GalleryPage = lazy(() => import("./gallery"));
 
 export default function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/referal">
       <ScrollRestoration />
       <Routes>
         <Route path="/" element={<Login />} />

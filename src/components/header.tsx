@@ -16,7 +16,7 @@ const ChannelLink = () => {
   return (
     <img
       className="h-8 w-8 overflow-hidden rounded-full cursor-pointer"
-      src="/task-logo.png"
+      src="/referal/task-logo.png"
       alt="Channel"
       onClick={handleClick}
     />

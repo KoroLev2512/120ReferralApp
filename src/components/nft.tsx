@@ -33,7 +33,7 @@ const UnlockedNft = ({ level }: { level: number }) => {
           </h2>
         </div>
       )}
-      <Video className="w-full" src={`/nft-${level + 1}.mp4`} />
+      <Video className="w-full" src={`/referal/nft-${level + 1}.mp4`} />
     </div>
   );
 };
@@ -52,7 +52,7 @@ export default function NFT({ level, userLevel }: Props) {
         </div>
         <img
           className="w-full"
-          src={`/nft-${level + 1}-pre.png`}
+          src={`/referal/nft-${level + 1}-pre.png`}
           alt={m.name}
         />
       </div>

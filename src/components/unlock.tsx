@@ -36,7 +36,7 @@ export default function Unlock({ level, message, button }: Props) {
           <LockKeyholeOpen className="size-10 text-hint" />
           <h1 className="title">{message}</h1>
         </div>
-        <img className="w-full" src={`/nft-${level + 1}-pre.png`} />
+        <img className="w-full" src={`/referal/nft-${level + 1}-pre.png`} />
       </div>
     );
   }
