@@ -38,7 +38,7 @@ paths:
     parameters post:
       telegram_id: integer
       
-    parameters get: # проверка должна длится 60 секунд
+    parameters get: # проверка должна длится 20 секунд
       unlockable_level: boolean 
 
 /api/ref/user/unlock/:
