@@ -14,7 +14,7 @@ const en = {
       title: "120Block",
       footnote: "Is a brand inspired by street culture and creativity",
       description:
-        "We strive with love to create a bold style that can turn ambition into reality!",
+        "We strive with love to create a bold style that can turn ambitions into reality!",
       button: "Next",
     },
     step2: {
@@ -113,7 +113,7 @@ const ru = {
       title: "120Block",
       footnote: "Это бренд, вдохновленный\n уличной культурой и творчеством",
       description:
-        "Мы с любовью стремимся создать смелый стиль, способный воплотить амбиции в реальность!",
+        "Мы с любовью стремимся создавать смелый стиль, способный воплотить амбиции в реальность!",
       button: "Далее",
     },
     step2: {

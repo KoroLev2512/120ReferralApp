@@ -8,6 +8,7 @@ export type User = {
   wallet?: string;
   donateMinted?: boolean;
   referralLink?: string;
+  unlockableLevel: boolean;
 };
 
 export type Task = {

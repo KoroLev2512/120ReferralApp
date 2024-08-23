@@ -2,7 +2,7 @@
 
 import { getStore } from "@/store/store";
 import type { Task, User } from "@/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BASE_URL } from "./const";
 import { retrieveRefCode, retrieveUserSafely } from "./utils";
 
@@ -18,6 +18,7 @@ function userAdapter(data: any): User | undefined {
       wallet: hasWallet ? data.wallet : undefined,
       donateMinted: data.mint_donate_nft,
       referralLink: data.referral_link,
+      unlockableLevel: data.unlockable_level
     };
   } catch (e) {
     console.log(e);
@@ -75,10 +76,15 @@ export const useGetUserQuery = () => {
   });
 };
 
-export const useLoginMutation = () =>
-  useMutation({
-    mutationFn: login,
-  });
+export const useLoginMutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: login,
+      onSuccess: (data) => {
+        queryClient.setQueryData(["login"], data);
+      },
+    });
+  };
 
 export const useTasksQuery = () => {
   return useQuery({
@@ -115,44 +121,80 @@ async function fetchUserWallet(wallet: string): Promise<User | undefined> {
   }
 }
 
-export const useAddUserWalletMutation = () =>
-  useMutation({
-    mutationFn: fetchUserWallet,
-  });
+export const useAddUserWalletMutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: fetchUserWallet,
+      onSuccess: (data) => {
+        queryClient.setQueryData(["login"], data);
+      },
+    });
+  };
 
-export const useUnlockMutation = () =>
-  useMutation({
-    mutationFn: async () => {
-      const user = retrieveUserSafely();
+  export const useUnlockMutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: async () => {
+        const user = retrieveUserSafely();
 
-      const response = await fetch(BASE_URL + "/ref/user/unlock", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        const response = await fetch(BASE_URL + "/ref/user/unlock", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            telegram_id: user.id,
+          }),
+        });
+
+        return await response.json();
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["login"] });
+      },
+    });
+  };
+
+  export const useCheckTaskCompletionMutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: async (taskId: string | number) => {
+            const user = retrieveUserSafely();
+
+            await fetch(BASE_URL + `/task/${user.id}/checking/${taskId}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+          },
+          onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["tasks"]});
+          },
+    });
+  };
+
+  export const useChannelJoinCompletionMutation = () => {
+      const queryClient = useQueryClient();
+      useMutation({
+        mutationFn: async () => {
+          const user = retrieveUserSafely();
+
+          await fetch(BASE_URL + `/ref/user/subscribe`, {
+            body: JSON.stringify({
+              telegram_id: user.id
+            }),
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
         },
-        body: JSON.stringify({
-          telegram_id: user.id,
-          unlockable_level: true,
-        }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["login"]})
+        }
       });
-
-      return await response.json();
-    },
-  });
-
-export const useCheckTaskCompletionMutation = () =>
-  useMutation({
-    mutationFn: async (taskId: string | number) => {
-      const user = retrieveUserSafely();
-
-      await fetch(BASE_URL + `/task/${user.id}/checking/${taskId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  });
+  }
 
 export const useMintNFTMutation = () =>
   useMutation({

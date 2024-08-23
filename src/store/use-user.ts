@@ -1,8 +1,9 @@
 import { useStore } from "./store";
+import { useGetUserQuery } from "@/lib/queries";
 
 export const useUser = () => {
-  const user = useStore((state) => state.user);
+  const { data: user, isLoading, isError } = useGetUserQuery();
   const setUser = useStore((state) => state.setUser);
 
-  return { user, setUser };
+  return { user, setUser, isLoading, isError };
 };

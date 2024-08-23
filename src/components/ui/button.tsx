@@ -15,6 +15,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           disabled && "bg-disabled text-bg hover:bg-disabled border-disabled",
           className
         )}
+        disabled={disabled}
         ref={ref}
         {...props}
       />

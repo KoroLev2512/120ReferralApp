@@ -71,10 +71,10 @@ export default function GalleryPage() {
     <>
       <Header />
       <div className="flex h-full flex-col justify-between">
-        <Carousel
-          className="w-full"
+      <Carousel
+          className='w-full'
           opts={{
-            startIndex: user.level > 0 ? user.level : 1,
+            startIndex: user.level > 0 ? user.level + 1 : 1,
           }}
           setApi={setApi}
         >
