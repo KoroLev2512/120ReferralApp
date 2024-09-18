@@ -1,4 +1,4 @@
-
+![Image alt](https://github.com/korolev_2512/120ReferralApp/raw/master/image/image.png)
 ## 120Block: a new look at street culture
 
 #### This is a referral telegram mini-app for the project 120block which is intended for creative people who want to find new acquaintances and monetize their creativity. With the help of the application, users will be able to invite their friends to join the movement, complete tasks and receive the first Ton-coins.
