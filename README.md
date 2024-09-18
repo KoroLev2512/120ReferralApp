@@ -54,3 +54,4 @@ To contact about the project, you can write to [120Block team support](https://t
 ## Gratitude
 
 We are grateful to the React team for the React.js framework and Telegram team that we used to create this application.
+
